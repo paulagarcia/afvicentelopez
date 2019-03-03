@@ -38,6 +38,11 @@ class CursosPorNiveles extends React.Component{
 
     render(){
       const {classes} = this.props;
+      let newText = '';
+      var extraStyle = {
+        marginTop: '-7rem',
+        minHeight: 'auto',
+      }
 
       return(
         <section className={classes.sectionContainer} id='cursos'>
@@ -68,12 +73,21 @@ class CursosPorNiveles extends React.Component{
                   </CardActions>
                   <Collapse in={this.state.expanded[curso.id]} timeout="auto" unmountOnExit className={classes.collapse}>
                     <CardContent>
-                      <p>{curso.horario}</p>
+                      {
+                        newText = curso.horario.split('\n').map((item, i) => {
+                          return <p key={i}>{item}</p>
+                        })
+                      }
                     </CardContent>
                   </Collapse>
                 </Card>
               </Grid>
               ))}
+              <div className={classes.cardContent} style={extraStyle}>
+                <h4 className={classes.nivel}>Taller de Conversación</h4>
+                <p>Viernes de 10 a 12 hs - Comienzo: 8/03/2019</p>
+              </div>
+
           </Grid>
         </section>
       )
